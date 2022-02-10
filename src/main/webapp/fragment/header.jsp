@@ -10,7 +10,7 @@
         <li><a class="active" href="/home.jsp">HOME</a></li>
         <li><a href="/list-coaches">COACHES</a></li>
         <li><a href="/list-band">BANDS</a></li>
-        <li style="float:right"><a href="#about">EXIT</a></li>
+        <li style="float:right"><a href="logout">Logout</a></li>
     </ul>
 </div>
 </body>

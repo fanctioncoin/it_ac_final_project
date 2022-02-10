@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import by.staravoyt.app.dto.BandDto;
 import by.staravoyt.app.dto.convertors.ModelDtoConvertor;
@@ -18,10 +19,12 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class BandService
 {
     private final BandRepository bandRepository;
     private final ModelDtoConvertor<Band, BandDto> bandBandDtoModelDtoConvertor;
+
 
     public List<BandDto> findAll()
     {

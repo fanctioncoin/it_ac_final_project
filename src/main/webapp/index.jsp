@@ -10,7 +10,7 @@
 <body>
 <br>
 <div class=container4  >
-    <form action="login" method="post">
+    <form action="/home.jsp">
     <input type="submit" value="Continue" class="floating-button">
     </form>
 </div>

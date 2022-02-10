@@ -7,6 +7,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,18 +31,15 @@ public class CoachController
 {
     private final CoachService coachService;
 
+
+@Transactional
     @GetMapping(path = "/list-coaches")
     public ModelAndView getAll(Principal principal)
     {
         ModelAndView modelAndView = new ModelAndView();
-//        Principal principal = (Principal)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        String name = principal.getName();
-
         List<CoachDto> coachesDto = coachService.findAll();
         modelAndView.addObject("salary",coachService.averageSalary(coachesDto));
         modelAndView.addObject("coaches", coachesDto);
-//        modelAndView.addObject("coach", new Coach());
-//        modelAndView.addObject("principal", principal);
         modelAndView.setViewName("/coach/show-coaches");
         return modelAndView;
     }

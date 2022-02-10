@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import by.staravoyt.app.dto.StudentDto;
 import by.staravoyt.app.dto.convertors.ModelDtoConvertor;
@@ -20,10 +21,12 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class StudentService
 {
     private final StudentRepository studentRepository;
     private final ModelDtoConvertor<Student, StudentDto> studentDtoModelDtoConvertor;
+
 
     public List<StudentDto> findAll()
     {

@@ -29,7 +29,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @Configuration
 @ComponentScan("by.staravoyt.app")
 @EnableWebMvc
-@EnableAspectJAutoProxy
+@EnableAspectJAutoProxy(proxyTargetClass = true)
 @EnableJpaRepositories(basePackages = "by.staravoyt.app.repositories")
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -77,7 +77,7 @@ public class ApplicationConfig extends AbstractSecurityWebApplicationInitializer
         properties.setProperty("hibernate.dbcp.maxIdle", "10");
         properties.setProperty("hibernate.dbcp.minIdle", "5");
         properties.setProperty("hibernate.dbcp.maxWaitMillis", "-1");
-        properties.setProperty("hibernate.enable_lazy_load_no_trans", "true");
+//        properties.setProperty("hibernate.enable_lazy_load_no_trans", "true");
         return properties;
     }
 
@@ -90,7 +90,6 @@ public class ApplicationConfig extends AbstractSecurityWebApplicationInitializer
     public InternalResourceViewResolver internalResourceViewResolver(@Autowired ApplicationContext ctx) {
         InternalResourceViewResolver resolver = new InternalResourceViewResolver();
         resolver.setApplicationContext(ctx);
-//        resolver.setPrefix("/jsp/");
         resolver.setSuffix(".jsp");
         return resolver;
     }

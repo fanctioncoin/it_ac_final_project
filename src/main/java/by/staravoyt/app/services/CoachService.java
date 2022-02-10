@@ -8,6 +8,8 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 
 import by.staravoyt.app.dto.CoachDto;
 import by.staravoyt.app.dto.convertors.ModelDtoConvertor;
@@ -21,6 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class CoachService
 {
     private final CoachRepository coachRepository;
@@ -67,7 +70,7 @@ public class CoachService
                                            .collect(Collectors.toList());
         return average(salaries).setScale(2, RoundingMode.HALF_UP);
     }
-
+//
     private BigDecimal average(final List<Integer> salaries)
     {
         double average = salaries.stream()

@@ -37,8 +37,6 @@ public class BandController
     public ModelAndView getAll(Principal principal)
     {
         ModelAndView modelAndView = new ModelAndView();
-//        Principal principal = (Principal)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        String name = principal.getName();
         modelAndView.addObject("bands", bandService.findAll());
         modelAndView.addObject("principal", principal);
         modelAndView.setViewName("/student/show-band");
@@ -47,7 +45,7 @@ public class BandController
 
     @PostMapping(value = "/choose-band")
     public String chooseBand (@RequestParam(value = "id") Integer id,
-                              Model model, RedirectAttributes redirectAttributes)
+                              RedirectAttributes redirectAttributes)
     {
         Band band = bandService.findById(id).orElse(null);
         if(band==null){
