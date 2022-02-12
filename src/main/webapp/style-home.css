@@ -1,0 +1,37 @@
+@charset "windows-1251";
+
+
+P {
+    padding-left: 20px;
+}
+body {
+    background-image: url("resources/home-page.jpg");
+    background-size:100% ;
+}
+/*///////*/
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, cursive;
+    font-size: xxx-large;
+}
+div.container4 {
+    height: 10em;
+    position: relative }
+div.container4 h1 {
+    color: #ffffff;
+    font-family: Arial, Helvetica, cursive;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%) }
+div.container4 h5 {
+    color: #ffffff;
+    font-family: Arial, Helvetica, cursive;
+    margin: 0;
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%) }
