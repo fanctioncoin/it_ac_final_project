@@ -1,7 +1,6 @@
 package by.staravoyt.app.models;
 
 import javax.persistence.CascadeType;
-import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToOne;
@@ -11,6 +10,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import lombok.experimental.SuperBuilder;
 
 
 @ToString(callSuper = true)
@@ -18,6 +18,7 @@ import lombok.ToString;
 @Data
 @NoArgsConstructor
 @MappedSuperclass
+@SuperBuilder
 public abstract class Person extends EntityModel
 {
 
@@ -45,22 +46,4 @@ public abstract class Person extends EntityModel
         this.age = age;
     }
 
-
-    @Override
-    public Person withId(Integer id) {
-        setId(id);
-        return this;
-    }
-    public Person withCredUser(CredUser credUser) {
-        setCredUser(credUser);
-        return this;
-    }
-    public Person withName(String name) {
-        setName(name);
-        return this;
-    }
-    public Person withAge(Integer age) {
-        setAge(age);
-        return this;
-    }
 }

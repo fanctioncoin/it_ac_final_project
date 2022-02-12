@@ -21,7 +21,6 @@ import lombok.RequiredArgsConstructor;
 @Controller
 @RequestMapping
 @RequiredArgsConstructor
-@Transactional
 public class StudentController
 {
     private final StudentService studentService;

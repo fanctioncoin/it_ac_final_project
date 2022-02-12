@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 import by.staravoyt.app.dto.CoachDto;
+import by.staravoyt.app.dto.convertors.DtoModelConvertor;
 import by.staravoyt.app.dto.convertors.ModelDtoConvertor;
 import by.staravoyt.app.exceptions.ApplicationException;
 import by.staravoyt.app.models.Coach;
@@ -28,6 +29,7 @@ public class CoachService
 {
     private final CoachRepository coachRepository;
     private final ModelDtoConvertor<Coach, CoachDto> coachCoachDtoModelDtoConvertor;
+    private final DtoModelConvertor<CoachDto,Coach> coachDtoModelConvertor;
 
     public List<CoachDto> findAll()
     {
@@ -53,6 +55,11 @@ public class CoachService
         return coach;
     }
 
+    public Coach create(CoachDto coachDto)
+    {
+        return coachRepository.save(coachDtoModelConvertor.convert(coachDto));
+    }
+
     public Coach save(Coach coach)
     {
         return coachRepository.save(coach);
@@ -70,7 +77,7 @@ public class CoachService
                                            .collect(Collectors.toList());
         return average(salaries).setScale(2, RoundingMode.HALF_UP);
     }
-//
+
     private BigDecimal average(final List<Integer> salaries)
     {
         double average = salaries.stream()

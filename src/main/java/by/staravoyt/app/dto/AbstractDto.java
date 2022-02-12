@@ -1,12 +1,18 @@
 package by.staravoyt.app.dto;
 
 import by.staravoyt.app.models.auth.CredUser;
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
 
-@Data
-@SuperBuilder
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@SuperBuilder(toBuilder = true)
 public class AbstractDto
 {
     protected Integer id;

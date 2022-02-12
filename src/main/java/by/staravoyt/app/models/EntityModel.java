@@ -22,9 +22,4 @@ public abstract class EntityModel
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    public EntityModel withId(Integer id) {
-        setId(id);
-        return this;
-    }
-
 }

@@ -3,21 +3,20 @@ package by.staravoyt.app.models.auth;
 import java.util.Collection;
 import java.util.LinkedHashSet;
 import javax.persistence.CascadeType;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import by.staravoyt.app.models.EntityModel;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -32,7 +31,7 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Entity( name = "usr")
-@Builder
+@SuperBuilder
 public class CredUser extends EntityModel
 {
 
@@ -43,24 +42,18 @@ public class CredUser extends EntityModel
     private boolean enabled;
 
 
-    @ManyToMany(cascade = { CascadeType.ALL})
+    @ManyToMany(cascade = { CascadeType.ALL}, fetch = FetchType.EAGER)
     @JoinTable(name = "usr_role",
             joinColumns = @JoinColumn(name = "usr_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Collection<Role> roles = new LinkedHashSet<>();
 
+    @LazyCollection(LazyCollectionOption.FALSE)
     @ManyToMany(cascade = { CascadeType.ALL})
     @JoinTable(name = "usr_authority",
             joinColumns = @JoinColumn(name = "usr_id"),
             inverseJoinColumns = @JoinColumn(name = "authority_id"))
     private Collection<Authority> authorities= new LinkedHashSet<>();
-
-
-    @Override
-    public CredUser withId(Integer id) {
-        setId(id);
-        return this;
-    }
 
     public boolean isEnabled()
     {

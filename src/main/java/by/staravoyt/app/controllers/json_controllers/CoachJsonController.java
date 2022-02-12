@@ -1,6 +1,5 @@
 package by.staravoyt.app.controllers.json_controllers;
 
-import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,20 +32,24 @@ public class CoachJsonController
 
     @GetMapping
 //    @PreAuthorize("hasAnyRole('ADMIN')")
-    public List<CoachDto> getAll(Principal principal) {
+    public List<CoachDto> getAll()
+    {
         return coachService.findAll();
     }
 
     @PostMapping
 //    @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Coach> createEmployee(@RequestBody Coach coach) {
+    public ResponseEntity<Coach> createEmployee(@RequestBody Coach coach)
+    {
         return ResponseEntity.ok(coachService.save(coach));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Coach> deleteDepartment(@PathVariable int id) {
+    public ResponseEntity<Coach> deleteDepartment(@PathVariable int id)
+    {
         Optional<Coach> coach = coachService.findById(id);
-        if (coach.isEmpty()) {
+        if (coach.isEmpty())
+        {
             return ResponseEntity.notFound().build();
         }
         coachService.delete(id);
@@ -65,6 +68,7 @@ public class CoachJsonController
         }
         return ResponseEntity.ok((getCoach(id, newCoach)).orElse(null));
     }
+
 
     private Optional<Coach> getCoach(final int id, final Coach newCoach)
     {

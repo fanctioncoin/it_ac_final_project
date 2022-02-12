@@ -16,7 +16,6 @@ public class StudentModelDtoConvertor implements ModelDtoConvertor<Student, Stud
     {
         return StudentDto.builder()
                          .id(student.getId())
-//                         .credUser(student.getCredUser())
                          .name(student.getName())
                          .age(student.getAge())
                          .band(student.getBand())

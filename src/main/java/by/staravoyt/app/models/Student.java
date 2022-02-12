@@ -10,6 +10,9 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
@@ -34,7 +37,7 @@ public class Student extends Person {
     @JoinColumn(name = "id_band")
     public Band band;
 
-
+    @LazyCollection(LazyCollectionOption.FALSE)
     @ElementCollection
     @CollectionTable(name = "marks", joinColumns = @JoinColumn(name = "student_id"))
     @Column(name = "mark")
@@ -53,37 +56,4 @@ public class Student extends Person {
     }
 
 
-    @Override
-    public Student withId(Integer id) {
-        setId(id);
-        return this;
-    }
-
-    @Override
-    public Student withCredUser(CredUser credUser) {
-        setCredUser(credUser);
-        return this;
-    }
-
-    @Override
-    public Student withName(String name) {
-        setName(name);
-        return this;
-    }
-
-    @Override
-    public Student withAge(Integer age) {
-        setAge(age);
-        return this;
-    }
-
-    public Student withBand(Band band){
-        setBand(band);
-        return this;
-    }
-
-    public Student withMarks(List<String> marks){
-        setMarks(marks);
-        return this;
-    }
 }

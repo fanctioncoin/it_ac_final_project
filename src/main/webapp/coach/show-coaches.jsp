@@ -1,5 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
     <title>List coaches</title>
@@ -52,7 +54,7 @@
 </table>
 <div align="center">
     <br>
-    <form action="/coach/add-coach.jsp" method="post">
+    <form action="${pageContext.request.contextPath}/add-coach">
         <input type="submit" value="Add new coach">
     </form>
 </div>

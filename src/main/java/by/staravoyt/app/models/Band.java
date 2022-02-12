@@ -1,6 +1,6 @@
 package by.staravoyt.app.models;
 
-// Наша группа студентов
+
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -11,9 +11,13 @@ import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -41,9 +45,10 @@ public class Band extends EntityModel
     @JoinColumn(name = "id_coach")
     private Coach coach;
 
-    @OneToMany(mappedBy = "band", cascade =  {CascadeType.REFRESH,CascadeType.REMOVE})
+    @OneToMany(mappedBy = "band", cascade =  {CascadeType.REFRESH,CascadeType.REMOVE}, fetch = FetchType.EAGER)
     private Set<Student> students;
 
+    @LazyCollection(LazyCollectionOption.FALSE)
     @ElementCollection
     @CollectionTable(name = "discipline", joinColumns = @JoinColumn(name = "band_id"))
     @Column(name = "name")
@@ -60,30 +65,5 @@ public class Band extends EntityModel
         this.disciplines = disciplines;
     }
 
-    @Override
-    public Band withId(Integer id) {
-        setId(id);
-        return this;
-    }
 
-
-    public Band withName(String name) {
-        setName(name);
-        return this;
-    }
-
-    public Band withCoach(Coach coach) {
-        setCoach(coach);
-        return this;
-    }
-
-    public Band withStudents(Set<Student> students) {
-        setStudents(students);
-        return this;
-    }
-
-    public Band withDisciplines(List<String> disciplines) {
-        setDisciplines(disciplines);
-        return this;
-    }
 }

@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import lombok.experimental.SuperBuilder;
 
 
 @ToString(callSuper = true)
@@ -17,19 +18,9 @@ import lombok.ToString;
 @NoArgsConstructor
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @javax.persistence.Entity
+@SuperBuilder
 public class Discipline extends EntityModel
 {
-
     private String name;
 
-    @Override
-    public Discipline withId(Integer id) {
-        setId(id);
-        return this;
-    }
-
-    public Discipline withName(String name) {
-        setName(name);
-        return this;
-    }
 }

@@ -2,12 +2,9 @@ package by.staravoyt.app.dto.convertors.models;
 
 import org.springframework.stereotype.Component;
 
-
-
 import by.staravoyt.app.dto.CoachDto;
 import by.staravoyt.app.dto.convertors.ModelDtoConvertor;
 import by.staravoyt.app.models.Coach;
-import by.staravoyt.app.models.auth.CredUser;
 
 
 @Component

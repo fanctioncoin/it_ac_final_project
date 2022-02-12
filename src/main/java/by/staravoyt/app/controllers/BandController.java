@@ -38,7 +38,6 @@ public class BandController
     {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("bands", bandService.findAll());
-        modelAndView.addObject("principal", principal);
         modelAndView.setViewName("/student/show-band");
         return modelAndView;
     }
